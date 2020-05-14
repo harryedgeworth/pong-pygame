@@ -26,8 +26,8 @@ WIDTH = 800
 HEIGHT = 600
 FPS = 60
 LIGHT_GREY = (100, 100, 100)
-GAME_FONT = pygame.font.Font("PressStart2P-Regular.ttf", 26)
-OTHER_FONT = pygame.font.Font("PressStart2P-Regular.ttf", 16)
+GAME_FONT = pygame.font.Font("assets/PressStart2P-Regular.ttf", 26)
+OTHER_FONT = pygame.font.Font("assets/PressStart2P-Regular.ttf", 16)
 
 running = True
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
