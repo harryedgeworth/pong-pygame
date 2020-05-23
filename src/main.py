@@ -3,6 +3,7 @@ import sys
 
 from ball import Ball
 from paddle import Paddle
+from src.asset_loader import load_assets
 
 pygame.init()
 
@@ -26,13 +27,15 @@ WIDTH = 800
 HEIGHT = 600
 FPS = 60
 LIGHT_GREY = (100, 100, 100)
-GAME_FONT = pygame.font.Font("../assets/PressStart2P-Regular.ttf", 26)
-OTHER_FONT = pygame.font.Font("../assets/PressStart2P-Regular.ttf", 16)
 
 running = True
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+ASSETS = load_assets('../assets/', convert_images=True, font_sizes=(16,26))
 pygame.display.set_caption("Pong")
 clock = pygame.time.Clock()
+
+GAME_FONT = ASSETS['PressStart2P-Regular.ttf-26']
+OTHER_FONT = ASSETS['PressStart2P-Regular.ttf-16']
 
 all_sprites = pygame.sprite.Group()
 
