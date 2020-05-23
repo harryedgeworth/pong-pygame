@@ -1,9 +1,10 @@
 import pygame
 import sys
 
+from asset_loader import load_assets
 from ball import Ball
 from paddle import Paddle
-from src.asset_loader import load_assets
+
 
 pygame.init()
 
