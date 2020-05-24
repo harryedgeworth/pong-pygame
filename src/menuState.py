@@ -9,26 +9,26 @@ class MenuState(State):
 
         # Add images for play text and hover text
         self.AM.add_asset('play_image',
-            self.AM.get_asset('Open Sans', 'menu').render('Play Game', 1, (255,255,255)),
+            self.AM.get_asset('fonts/pstart.ttf-22').render(' Play Game ', 1, (100,100,100)),
             'menu')
         self.AM.add_asset('play_hover_image',
-                self.AM.get_asset('Open Sans', 'menu').render('Play Game', 1, (255,32,32)),
+                self.AM.get_asset('fonts/pstart.ttf-22', 'menu').render('>Play Game<', 1, (255,255,255)),
                 'menu')
         # Rectangle represented play text
         self.play_button = pygame.Rect(
-            (320-self.AM.get_asset('play_image', 'menu').get_size()[0]/2, 180),
+            (400-self.AM.get_asset('play_image', 'menu').get_size()[0]/2, 230),
             self.AM.get_asset('play_image', 'menu').get_size())
 
         # Add images for quit text and hover text
         self.AM.add_asset('quit_image',
-            self.AM.get_asset('Open Sans', 'menu').render('Quit Game', 1, (255,255,255)),
+            self.AM.get_asset('fonts/pstart.ttf-22', 'menu').render(' Quit Game ', 1, (100,100,100)),
             'menu')
         self.AM.add_asset('quit_hover_image',
-                self.AM.get_asset('Open Sans', 'menu').render('Quit Game', 1, (255,32,32)),
+                self.AM.get_asset('fonts/pstart.ttf-22', 'menu').render('>Quit Game<', 1, (255,255,255)),
                 'menu')
         # Rectangle represented quit text
         self.quit_button = pygame.Rect(
-            (320-self.AM.get_asset('quit_image', 'menu').get_size()[0]/2, 260),
+            (400-self.AM.get_asset('quit_image', 'menu').get_size()[0]/2, 310),
             self.AM.get_asset('quit_image', 'menu').get_size())
 
     def handleEvents(self, events):
@@ -46,7 +46,7 @@ class MenuState(State):
         pass
 
     def blit(self, surface):
-        surface.fill((34, 89, 221))
+        surface.fill(pygame.Color('grey12'))
 
         if not self.play_button.collidepoint(pygame.mouse.get_pos()):
             surface.blit(self.AM.get_asset('play_image', 'menu'), self.play_button)

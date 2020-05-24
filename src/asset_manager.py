@@ -2,11 +2,11 @@ import pygame
 import os
 
 class AssetManager():
-    def __init__(self):
+    def __init__(self, font_sizes):
         self.assets = {}
         self.scoped_assets = {}
         self.convert_images = True
-        self.font_sizes = (16,)
+        self.font_sizes = font_sizes
 
     def load_assets(self, base_path):
         assets = {}

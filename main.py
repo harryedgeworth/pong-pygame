@@ -9,9 +9,8 @@ if __name__ == '__main__':
 
     screen = pygame.display.set_mode((800,600))
 
-    AM = AssetManager()
+    AM = AssetManager(font_sizes = (16, 22))
     AM.load_assets('assets/')
-    AM.add_asset('Open Sans', pygame.font.SysFont('Open Sans', 48))
 
     gsm = GameStateManager(screen, AM)
     gsm.run()
