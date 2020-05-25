@@ -8,6 +8,7 @@ if __name__ == '__main__':
     pygame.init()
 
     screen = pygame.display.set_mode((800,600))
+    pygame.display.set_caption("Pong")
 
     AM = AssetManager(font_sizes = (16, 22))
     AM.load_assets('assets/')

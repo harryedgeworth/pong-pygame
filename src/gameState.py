@@ -1,5 +1,9 @@
 from src.state import State
+from src.ball import Ball
+from src.paddle import Paddle
+
 import pygame
+import sys
 
 class GameState(State):
     def __init__(self, stateManager):
@@ -10,31 +14,30 @@ class GameState(State):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.stateManager.state = 'menu'
-
-        if pygame.key.get_pressed()[pygame.K_LEFT]:
-            self.speed[0] -= 2
-        if pygame.key.get_pressed()[pygame.K_RIGHT]:
-            self.speed[0] += 2
-        if pygame.key.get_pressed()[pygame.K_UP]:
-            self.speed[1] -= 2
-        if pygame.key.get_pressed()[pygame.K_DOWN]:
-            self.speed[1] += 2
+                if event.key == pygame.K_DOWN:
+                    self.player.speed += 7
+                if event.key == pygame.K_UP:
+                    self.player.speed -= 7
+                    
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_DOWN:
+                    self.player.speed -= 7
+                if event.key == pygame.K_UP:
+                    self.player.speed += 7
 
     def tick(self):
-        self.speed[0] *= 0.8
-        self.speed[1] *= 0.8
-
-        if abs(self.speed[0]) < 1: self.speed[0] = 0
-        if abs(self.speed[1]) < 1: self.speed[1] = 0
-
-        self.rect.x += self.speed[0]
-        self.rect.y += self.speed[1]
+        self.all_sprites.update(self.ball, self.player, self.opponent)
 
     def blit(self, surface):
-        surface.fill((56, 136, 21))
-        pygame.draw.rect(surface, (211, 187, 43), self.rect)
+        surface.fill(pygame.Color('grey12'))
+        pygame.draw.aaline(surface, (100,100,100), (800/2, 0), (800/2, 600))
+
+        self.all_sprites.draw(surface)
 
     def join(self, old_state=None):
         if old_state == 'menu':
-            self.rect = pygame.Rect((280, 200), (80,80))
-            self.speed = [0,0]
+            self.all_sprites = pygame.sprite.Group()
+            self.ball = Ball((100,100,100))
+            self.player = Paddle((100,100,100), 20, 600/2, 1)
+            self.opponent = Paddle((100,100,100), 800 - 20, 600/2, 2)
+            self.all_sprites.add(self.ball, self.player, self.opponent)
