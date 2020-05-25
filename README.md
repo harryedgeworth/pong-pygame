@@ -1,2 +1,2 @@
 # pong-pygame
-A simple game of Pong made using pygame.
+A game of Pong made using pygame.
