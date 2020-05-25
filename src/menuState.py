@@ -7,6 +7,9 @@ class MenuState(State):
         self.stateManager = stateManager
         self.AM = self.stateManager.AM
 
+        self.WIDTH = pygame.display.get_surface().get_width()
+        self.HEIGHT = pygame.display.get_surface().get_height()
+
         # Add images for play text and hover text
         self.AM.add_asset('play_image',
             self.AM.get_asset('fonts/pstart.ttf-22').render(' Play Game ', 1, (100,100,100)),
@@ -16,7 +19,7 @@ class MenuState(State):
                 'menu')
         # Rectangle represented play text
         self.play_button = pygame.Rect(
-            (400-self.AM.get_asset('play_image', 'menu').get_size()[0]/2, 230),
+            (self.WIDTH / 2 - self.AM.get_asset('play_image', 'menu').get_size()[0]/2, 230),
             self.AM.get_asset('play_image', 'menu').get_size())
 
         # Add images for quit text and hover text
@@ -28,7 +31,7 @@ class MenuState(State):
                 'menu')
         # Rectangle represented quit text
         self.quit_button = pygame.Rect(
-            (400-self.AM.get_asset('quit_image', 'menu').get_size()[0]/2, 310),
+            (self.WIDTH / 2- self.AM.get_asset('quit_image', 'menu').get_size()[0]/2, 310),
             self.AM.get_asset('quit_image', 'menu').get_size())
 
     def handleEvents(self, events):
