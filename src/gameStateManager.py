@@ -44,5 +44,5 @@ class GameStateManager:
         while self.running:
             clock.tick(60)
             self.handleEvents()
-            self.state.tick()
+            self.state.tick(clock)
             self.blit()

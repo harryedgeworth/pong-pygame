@@ -29,7 +29,7 @@ class GameState(State):
                 if event.key == pygame.K_UP:
                     self.player.speed += 7
 
-    def tick(self):
+    def tick(self, clock):
         self.all_sprites.update(self.ball, self.player, self.opponent)
 
         self.AM.add_asset('player_score',
@@ -39,12 +39,17 @@ class GameState(State):
             self.AM.get_asset('fonts/pstart.ttf-22').render(f"{self.opponent.score}", 1, (100,100,100)),
             'game')
 
+        self.AM.add_asset('fps_counter',
+            self.AM.get_asset('fonts/pstart.ttf-16').render(f"{int(clock.get_fps())} FPS", 1, (100,100,100)),
+            'game')
+
     def blit(self, surface):
         surface.fill(pygame.Color('grey12'))
         pygame.draw.aaline(surface, (100,100,100), (self.WIDTH/2, 0), (self.WIDTH/2, self.HEIGHT))
 
         surface.blit(self.AM.get_asset('player_score', 'game'), (356,285))
         surface.blit(self.AM.get_asset('opponent_score', 'game'), (422,285))
+        surface.blit(self.AM.get_asset('fps_counter', 'game'), (10,10))
 
         self.all_sprites.draw(surface)
 

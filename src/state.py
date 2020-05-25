@@ -2,7 +2,7 @@ class State():
     def handleEvents(self, events):
         pass
 
-    def tick(self):
+    def tick(self, clock):
         pass
 
     def blit(self, surface):

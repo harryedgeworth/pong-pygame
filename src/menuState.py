@@ -45,7 +45,7 @@ class MenuState(State):
                 if self.quit_button.collidepoint(event.pos):
                     sys.exit()
 
-    def tick(self):
+    def tick(self, clock):
         pass
 
     def blit(self, surface):
