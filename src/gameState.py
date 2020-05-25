@@ -10,8 +10,6 @@ class GameState(State):
         self.stateManager = stateManager
         self.AM = self.stateManager.AM
 
-        self.GAME_FONT = pygame.font.Font("assets/fonts/pstart.ttf", 22)
-
         self.WIDTH = pygame.display.get_surface().get_width()
         self.HEIGHT = pygame.display.get_surface().get_height()
 
@@ -34,15 +32,19 @@ class GameState(State):
     def tick(self):
         self.all_sprites.update(self.ball, self.player, self.opponent)
 
-        self.player_text = self.GAME_FONT.render(f"{self.player.score}", True, (100,100,100))
-        self.opponent_text = self.GAME_FONT.render(f"{self.opponent.score}", True, (100,100,100))
+        self.AM.add_asset('player_score',
+            self.AM.get_asset('fonts/pstart.ttf-22').render(f"{self.player.score}", 1, (100,100,100)),
+            'game')
+        self.AM.add_asset('opponent_score',
+            self.AM.get_asset('fonts/pstart.ttf-22').render(f"{self.opponent.score}", 1, (100,100,100)),
+            'game')
 
     def blit(self, surface):
         surface.fill(pygame.Color('grey12'))
         pygame.draw.aaline(surface, (100,100,100), (self.WIDTH/2, 0), (self.WIDTH/2, self.HEIGHT))
 
-        surface.blit(self.player_text, (356,285))
-        surface.blit(self.opponent_text, (422,285))
+        surface.blit(self.AM.get_asset('player_score', 'game'), (356,285))
+        surface.blit(self.AM.get_asset('opponent_score', 'game'), (422,285))
 
         self.all_sprites.draw(surface)
 
