@@ -43,9 +43,9 @@ class GameState(State):
             self.AM.get_asset('fonts/pstart.ttf-16').render(f"{int(clock.get_fps())} FPS", 1, (100,100,100)),
             'game')
 
-        if self.player.score == 1:
+        if self.player.score == 5:
             self.stateManager.change_state('gameover', winner='player')
-        elif self.opponent.score == 1:
+        elif self.opponent.score == 5:
             self.stateManager.change_state('gameover', winner='opponent')
 
     def blit(self, surface):
