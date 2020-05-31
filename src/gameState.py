@@ -17,7 +17,7 @@ class GameState(State):
         for event in events:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    self.stateManager.state = 'menu'
+                    self.stateManager.change_state('menu')
                 if event.key == pygame.K_DOWN:
                     self.player.speed += 7
                 if event.key == pygame.K_UP:
@@ -43,8 +43,10 @@ class GameState(State):
             self.AM.get_asset('fonts/pstart.ttf-16').render(f"{int(clock.get_fps())} FPS", 1, (100,100,100)),
             'game')
 
-        if self.player.score == 5 or self.opponent.score == 5:
-            self.stateManager.state = 'gameover'
+        if self.player.score == 1:
+            self.stateManager.change_state('gameover', winner='player')
+        elif self.opponent.score == 1:
+            self.stateManager.change_state('gameover', winner='opponent')
 
     def blit(self, surface):
         surface.fill(pygame.Color('grey12'))

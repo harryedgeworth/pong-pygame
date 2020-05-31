@@ -50,7 +50,7 @@ class MenuState(State):
                     sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if self.play_button.collidepoint(event.pos):
-                    self.stateManager.state = 'game'
+                    self.stateManager.change_state('game')
                 if self.quit_button.collidepoint(event.pos):
                     sys.exit()
 

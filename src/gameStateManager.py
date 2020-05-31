@@ -22,12 +22,11 @@ class GameStateManager:
     def state(self):
         return self.states[self.current_state]
 
-    @state.setter
-    def state(self, state):
+    def change_state(self, state, **kwargs):
         old_state = self.current_state
         self.state.leave(state)
         self.current_state = state
-        self.state.join(old_state)
+        self.state.join(old_state, **kwargs)
 
     def handleEvents(self):
         events = pygame.event.get()
