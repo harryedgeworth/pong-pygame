@@ -43,6 +43,9 @@ class GameState(State):
             self.AM.get_asset('fonts/pstart.ttf-16').render(f"{int(clock.get_fps())} FPS", 1, (100,100,100)),
             'game')
 
+        if self.player.score == 5 or self.opponent.score == 5:
+            self.stateManager.state = 'gameover'
+
     def blit(self, surface):
         surface.fill(pygame.Color('grey12'))
         pygame.draw.aaline(surface, (100,100,100), (self.WIDTH/2, 0), (self.WIDTH/2, self.HEIGHT))

@@ -1,5 +1,6 @@
 from src.menuState import MenuState
 from src.gameState import GameState
+from src.gameOverState import GameOverState
 
 import pygame
 
@@ -10,7 +11,8 @@ class GameStateManager:
         self.current_state = 'menu'
         self.states = {
             'menu': MenuState(self),
-            'game': GameState(self)
+            'game': GameState(self),
+            'gameover': GameOverState(self)
         }
 
         self.surface = surface

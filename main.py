@@ -10,7 +10,7 @@ if __name__ == '__main__':
     screen = pygame.display.set_mode((800,600))
     pygame.display.set_caption("Pong")
 
-    AM = AssetManager(font_sizes = (16, 22))
+    AM = AssetManager(font_sizes = (16, 22, 45))
     AM.load_assets('assets/')
 
     gsm = GameStateManager(screen, AM)

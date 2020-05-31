@@ -10,6 +10,15 @@ class MenuState(State):
         self.WIDTH = pygame.display.get_surface().get_width()
         self.HEIGHT = pygame.display.get_surface().get_height()
 
+        # Add game logo
+        self.AM.add_asset('game_logo',                                                              
+            self.AM.get_asset('fonts/pstart.ttf-45').render('P O N G', 1, (255,255,255)),
+            'menu')
+        # Rectangle represented by game logo
+        self.logo_text = pygame.Rect(
+            (self.WIDTH / 2 - self.AM.get_asset('game_logo', 'menu').get_size()[0]/2, 100),
+            self.AM.get_asset('game_logo', 'menu').get_size())
+
         # Add images for play text and hover text
         self.AM.add_asset('play_image',
             self.AM.get_asset('fonts/pstart.ttf-22').render(' Play Game ', 1, (100,100,100)),
@@ -50,6 +59,8 @@ class MenuState(State):
 
     def blit(self, surface):
         surface.fill(pygame.Color('grey12'))
+
+        surface.blit(self.AM.get_asset('game_logo', 'menu'), self.logo_text)
 
         if not self.play_button.collidepoint(pygame.mouse.get_pos()):
             surface.blit(self.AM.get_asset('play_image', 'menu'), self.play_button)
